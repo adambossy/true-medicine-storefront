@@ -1,7 +1,15 @@
+.Product {
+    margin-bottom: 6em;
+}
+
+.Product-name {
+    margin-bottom: 0;
+}
+
 .Product-cart-controls {
     display: flex;
     flex-direction: row;
-    margin: 0 40%;
+    margin: 1em 48% 0;
 }
 
 .Product-cart-controls div {

@@ -35,7 +35,9 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Product product={this.state.products[0]} />
+                {this.state.products.map((product) => (
+                    <Product product={product} />
+                ))}
             </div>
         );
     }
