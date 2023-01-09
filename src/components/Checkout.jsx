@@ -7,11 +7,12 @@ class Checkout extends Component {
     }
 
     render() {
-        const { products } = this.props;
+        const { products, onCheckout } = this.props;
+        const totalItems = this.totalItems(products);
 
         return (
-            <button>
-                Checkout ({this.totalItems(products)} items)
+            <button role="link" onClick={onCheckout} disabled={totalItems == 0}>
+                Checkout ({totalItems} items)
             </button>
         );
     }

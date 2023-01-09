@@ -1,7 +1,13 @@
 import { Component } from "react";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 import Product from "./components/Product"
 import Checkout from "./components/Checkout"
+import { loadStripe } from '@stripe/stripe-js';
+
+
+const stripePromise = loadStripe('pk_live_51MOQ24BBGh6EEAHEjeTETQgYdHqYdbHZPh6ASUUEOtAwL9kqSyfKQJHjqWvYRPngzZb8fFPmwrhCZoXjqdXwnfoZ00MBZs67Pz');
 
 class App extends Component {
     state = {
@@ -51,6 +57,19 @@ class App extends Component {
         this.setState({ products })
     };
 
+    onCheckout = async (event) => {
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1MOQQpBBGh6EEAHETLilW3L6', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'payment',
+            successUrl: 'https://localhost:3000/success',
+            cancelUrl: 'https://localhost:3000/cancel',
+        });
+    };
+
     render() {
         return (
             <div className="App">
@@ -63,6 +82,7 @@ class App extends Component {
                 ))}
                 <Checkout
                     products={this.state.products}
+                    onCheckout={this.onCheckout}
                 />
             </div>
         );
