@@ -1,13 +1,12 @@
 import { Component } from "react";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './App.css';
 import Product from "./components/Product"
 import Checkout from "./components/Checkout"
 import { loadStripe } from '@stripe/stripe-js';
 
 
-const stripePromise = loadStripe('pk_live_51MOQ24BBGh6EEAHEjeTETQgYdHqYdbHZPh6ASUUEOtAwL9kqSyfKQJHjqWvYRPngzZb8fFPmwrhCZoXjqdXwnfoZ00MBZs67Pz');
+const stripePromise = loadStripe('pk_test_51MOQ24BBGh6EEAHEYr8YwcqpdO3S2hbGwDPkY62kWiRBEhlN41SU2ICL52KQBdsOVHYW09Ekus56yrkC4SeaebxT00rdZGVRF8');
 
 class App extends Component {
     state = {
@@ -16,24 +15,28 @@ class App extends Component {
                 id: 0,
                 name: "Avocado",
                 image: "avocado.webp",
+                stripePriceId: "price_1MOQQpBBGh6EEAHETLilW3L6",
                 count: 0
             },
             {
                 id: 1,
                 name: "Broccoli",
                 image: "broccoli.jpeg",
+                stripePriceId: "price_1MOQRQBBGh6EEAHEZB1YGoA8",
                 count: 0
             },
             {
                 id: 2,
                 name: "Cauliflower",
                 image: "cauliflower.jpeg",
+                stripePriceId: "price_1MOQRYBBGh6EEAHEMrTtRQiM",
                 count: 0
             },
             {
                 id: 3,
                 name: "Pasture-raised beef",
                 image: "beef.jpeg",
+                stripePriceId: "price_1MOQReBBGh6EEAHEzvMynIUN",
                 count: 0
             },
         ]
@@ -59,14 +62,19 @@ class App extends Component {
 
     onCheckout = async (event) => {
         const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1MOQQpBBGh6EEAHETLilW3L6', // Replace with the ID of your price
-                quantity: 1,
-            }],
+        const lineItems = this.state.products
+            .filter(product => product.count > 0)
+            .map((product) => {
+                return {
+                    price: product.stripePriceId,
+                    quantity: product.count,
+                }
+            });
+        stripe.redirectToCheckout({
+            lineItems: lineItems,
             mode: 'payment',
-            successUrl: 'https://localhost:3000/success',
-            cancelUrl: 'https://localhost:3000/cancel',
+            successUrl: 'http://localhost:3000/',
+            cancelUrl: 'http://localhost:3000/',
         });
     };
 

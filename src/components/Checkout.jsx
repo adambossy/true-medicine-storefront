@@ -11,7 +11,7 @@ class Checkout extends Component {
         const totalItems = this.totalItems(products);
 
         return (
-            <button role="link" onClick={onCheckout} disabled={totalItems == 0}>
+            <button role="link" onClick={onCheckout} disabled={totalItems === 0}>
                 Checkout ({totalItems} items)
             </button>
         );
