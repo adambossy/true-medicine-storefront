@@ -4,7 +4,7 @@ import './Product.css';
 class Product extends Component {
 
     render() {
-        const { product } = this.props;
+        const { product, onAdd, onRemove } = this.props;
         return (
             <div className="Product">
                 <h1 className="Product-name">
@@ -12,9 +12,9 @@ class Product extends Component {
                 </h1>
                 <img src={product.image} className="Product-image" alt={product.name} />
                 <div class="Product-cart-controls">
-                    <button class="Product-cart-add">+</button>
+                    <button class="Product-cart-remove" onClick={() => onRemove(product)}>-</button>
                     <div class="Product-cart-count">{product.count}</div>
-                    <button class="Product-cart-remove">-</button>
+                    <button class="Product-cart-add" onClick={() => onAdd(product)}>+</button>
                 </div>
             </div>
         );

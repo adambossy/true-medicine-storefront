@@ -32,11 +32,33 @@ class App extends Component {
         ]
     };
 
+    onAdd = (product) => {
+        const products = [ ...this.state.products ] // shallow copy
+        const index = products.indexOf(product);
+        products[index] = { ...products[index] } // deep copy
+        products[index].count++;
+        this.setState({ products })
+    };
+
+    onRemove = (product) => {
+        const products = [ ...this.state.products ] // shallow copy
+        const index = products.indexOf(product);
+        products[index] = { ...products[index] } // deep copy
+        if (products[index].count > 0) {
+            products[index].count--;
+        }
+        this.setState({ products })
+    };
+
     render() {
         return (
             <div className="App">
                 {this.state.products.map((product) => (
-                    <Product product={product} />
+                    <Product
+                        product={product}
+                        onAdd={this.onAdd}
+                        onRemove={this.onRemove}
+                    />
                 ))}
             </div>
         );
