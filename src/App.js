@@ -35,7 +35,7 @@ class App extends Component {
     onAdd = (product) => {
         const products = [ ...this.state.products ] // shallow copy
         const index = products.indexOf(product);
-        products[index] = { ...products[index] } // deep copy
+        products[index] = { ...products[index] }    // deep copy
         products[index].count++;
         this.setState({ products })
     };
@@ -43,7 +43,7 @@ class App extends Component {
     onRemove = (product) => {
         const products = [ ...this.state.products ] // shallow copy
         const index = products.indexOf(product);
-        products[index] = { ...products[index] } // deep copy
+        products[index] = { ...products[index] }    // deep copy
         if (products[index].count > 0) {
             products[index].count--;
         }
