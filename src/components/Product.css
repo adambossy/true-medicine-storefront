@@ -1,0 +1,9 @@
+.Product-cart-controls {
+    display: flex;
+    flex-direction: row;
+    margin: 0 40%;
+}
+
+.Product-cart-controls div {
+    flex: 1;
+}

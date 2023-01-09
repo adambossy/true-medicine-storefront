@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Product.css';
 
 class Product extends Component {
 
@@ -11,9 +12,9 @@ class Product extends Component {
                 </h1>
                 <img src={product.image} className="Product-image" alt={product.name} />
                 <div class="Product-cart-controls">
-                    <div class="Product-cart-add">+</div>
+                    <button class="Product-cart-add">+</button>
                     <div class="Product-cart-count">{product.count}</div>
-                    <div class="Product-cart-remove">-</div>
+                    <button class="Product-cart-remove">-</button>
                 </div>
             </div>
         );
