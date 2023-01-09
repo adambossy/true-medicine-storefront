@@ -1,3 +1,5 @@
+![True Medicine Storefront](https://github.com/adambossy/true-medicine-storefront/blob/main/public/screenshot.png?raw=true)
+
 # Getting Started
 
 If you're on Mac OS, use Command + Space to bring up Spotlight. Type "Terminal" and hit enter to load the Terminal app. This assumes you have `git` over ssh and `npm` installed.
