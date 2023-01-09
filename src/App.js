@@ -1,6 +1,7 @@
 import { Component } from "react";
 import './App.css';
 import Product from "./components/Product"
+import Checkout from "./components/Checkout"
 
 class App extends Component {
     state = {
@@ -60,6 +61,9 @@ class App extends Component {
                         onRemove={this.onRemove}
                     />
                 ))}
+                <Checkout
+                    products={this.state.products}
+                />
             </div>
         );
     }
